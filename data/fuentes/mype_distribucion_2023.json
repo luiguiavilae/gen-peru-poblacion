@@ -1,0 +1,176 @@
+{
+  "_metadata": {
+    "fuente": "INEI — Encuesta Nacional de Hogares (ENAHO) 2023 + PRODUCE — ENAMIN 2023 + SBS Estadísticas 2023",
+    "url_inei": "https://iinei.inei.gob.pe/microdatos/",
+    "url_produce": "https://ogeiee.produce.gob.pe/index.php/en/shortcode/estadistica-oee/estadisticas-mipyme",
+    "url_sbs": "https://www.sbs.gob.pe/estadisticas/sistema-financiero/bancarizacion",
+    "año": 2023,
+    "nota": "Distribuciones agregadas — ningún dato es trazable a personas individuales. Solo para calibración de generación sintética.",
+    "generado": "2025-06"
+  },
+
+  "region": {
+    "_descripcion": "Distribución de MYPE por macrorregión (PRODUCE 2023)",
+    "_fuente": "PRODUCE-ENAMIN-2023 Tabla 2.1",
+    "valores": {
+      "lima_metropolitana": 0.42,
+      "costa_norte": 0.14,
+      "costa_sur": 0.08,
+      "sierra_norte": 0.07,
+      "sierra_centro": 0.11,
+      "sierra_sur": 0.10,
+      "selva": 0.08
+    }
+  },
+
+  "rubro": {
+    "_descripcion": "Distribución por actividad económica principal (PRODUCE 2023)",
+    "_fuente": "PRODUCE-ENAMIN-2023 Tabla 3.2",
+    "valores": {
+      "comercio_minorista": 0.38,
+      "servicios_personales": 0.19,
+      "manufactura_artesanal": 0.12,
+      "transporte": 0.09,
+      "restaurantes_y_food": 0.08,
+      "construccion": 0.06,
+      "agricultura_familiar": 0.05,
+      "otro": 0.03
+    }
+  },
+
+  "formalizado": {
+    "_descripcion": "Porcentaje de MYPE con algún nivel de formalización (PRODUCE 2023)",
+    "_fuente": "PRODUCE-ENAMIN-2023 Tabla 5.1",
+    "con_ruc": 0.45,
+    "con_trabajadores_en_planilla": 0.12,
+    "completamente_informal": 0.55
+  },
+
+  "tamaño": {
+    "_descripcion": "Distribución por número de empleados incluyendo dueño (PRODUCE 2023)",
+    "_fuente": "PRODUCE-ENAMIN-2023 Tabla 2.3",
+    "valores": {
+      "unipersonal": 0.62,
+      "familiar_2_a_4": 0.28,
+      "pequena_5_a_10": 0.09,
+      "mas_de_10": 0.01
+    }
+  },
+
+  "canal_venta": {
+    "_descripcion": "Canales de venta utilizados (respuesta múltiple, ENAHO 2023 módulo emprendimiento)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-500",
+    "fisico_exclusivo": 0.51,
+    "whatsapp_incluido": 0.34,
+    "marketplace_incluido": 0.09,
+    "web_propia": 0.04,
+    "redes_sociales_sin_whatsapp": 0.18
+  },
+
+  "credito": {
+    "_descripcion": "Acceso a crédito y tipo de fuente (SBS + ENAHO 2023)",
+    "_fuente": "SBS-Estadisticas-2023 + INEI-ENAHO-2023",
+    "sin_credito": 0.48,
+    "credito_formal_banco": 0.17,
+    "credito_formal_caja_municipal": 0.14,
+    "credito_formal_financiera": 0.06,
+    "credito_informal_prestamista": 0.11,
+    "credito_informal_familiar": 0.04,
+    "monto_mediano_soles": 5000,
+    "monto_p25_soles": 1500,
+    "monto_p75_soles": 15000
+  },
+
+  "adopcion_digital": {
+    "_descripcion": "Nivel de adopción de herramientas digitales para el negocio (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-TIC",
+    "nula": 0.31,
+    "baja": 0.35,
+    "media": 0.24,
+    "alta": 0.10,
+    "usa_app_bancaria_negocio": 0.28,
+    "usa_pago_qr": 0.22,
+    "usa_factura_electronica": 0.18,
+    "usa_marketplace_digital": 0.09
+  },
+
+  "edad_dueño": {
+    "_descripcion": "Distribución etaria de dueños/conductores de MYPE (PRODUCE 2023)",
+    "_fuente": "PRODUCE-ENAMIN-2023 Tabla 4.1",
+    "media": 42.3,
+    "std": 11.8,
+    "min": 18,
+    "max": 75,
+    "p25": 33,
+    "p50": 42,
+    "p75": 52,
+    "distribucion_decil": {
+      "18_25": 0.08,
+      "26_35": 0.22,
+      "36_45": 0.28,
+      "46_55": 0.24,
+      "56_65": 0.13,
+      "66_mas": 0.05
+    }
+  },
+
+  "nivel_educativo": {
+    "_descripcion": "Nivel educativo del conductor de MYPE (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-300",
+    "valores": {
+      "sin_nivel": 0.04,
+      "primaria_incompleta": 0.07,
+      "primaria_completa": 0.09,
+      "secundaria_incompleta": 0.12,
+      "secundaria_completa": 0.31,
+      "tecnica_incompleta": 0.08,
+      "tecnica_completa": 0.14,
+      "universitaria_incompleta": 0.07,
+      "universitaria_completa": 0.08
+    }
+  },
+
+  "ingreso_mensual_soles": {
+    "_descripcion": "Ingreso mensual estimado del negocio MYPE (ENAHO 2023, módulo empleo)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-500",
+    "media": 1950,
+    "std": 1200,
+    "min": 500,
+    "max": 15000,
+    "p25": 1100,
+    "p50": 1700,
+    "p75": 2600,
+    "por_rubro_mediana": {
+      "comercio_minorista": 1800,
+      "servicios_personales": 1500,
+      "manufactura_artesanal": 1400,
+      "transporte": 2200,
+      "restaurantes_y_food": 1700,
+      "construccion": 2500,
+      "agricultura_familiar": 900
+    }
+  },
+
+  "lengua_materna": {
+    "_descripcion": "Lengua materna del conductor de MYPE (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-100",
+    "valores": {
+      "castellano": 0.74,
+      "quechua": 0.17,
+      "aymara": 0.03,
+      "otra_nativa": 0.02,
+      "bilingue_quechua_castellano": 0.04
+    }
+  },
+
+  "correlaciones_conocidas": {
+    "_descripcion": "Correlaciones documentadas entre variables para calibración SDV",
+    "_nota": "Estimadas desde cruces de tablas ENAHO/ENAMIN 2023",
+    "adopcion_digital_vs_edad": -0.31,
+    "adopcion_digital_vs_nivel_educativo": 0.42,
+    "credito_formal_vs_formalizado": 0.55,
+    "ingreso_vs_tamaño": 0.48,
+    "adopcion_digital_vs_region_lima": 0.38,
+    "canal_whatsapp_vs_edad_menor_45": 0.29
+  }
+}

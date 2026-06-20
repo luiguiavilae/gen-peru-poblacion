@@ -1,0 +1,89 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gen-peru-poblacion"
+version = "0.1.0"
+description = "Synthetic population generator for Peru, calibrated with INEI, SBS and BCR data"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Tu nombre", email = "tu@email.com" }]
+keywords = [
+    "peru", "synthetic-data", "population", "simulation",
+    "ux-research", "llm", "agents", "mype", "fintech"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.10"
+
+# Core: solo generación estática, sin LLM
+dependencies = [
+    "sdv>=1.10",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "typer>=0.9",
+    "rich>=13.0",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+# Agentes conversacionales con DeepSeek (default)
+agents = [
+    "langgraph>=0.1",
+    "openai>=1.0",    # DeepSeek usa API compatible con OpenAI
+]
+# Provider OpenAI directo
+openai = [
+    "openai>=1.0",
+]
+# Todo incluido
+all = [
+    "gen-peru-poblacion[agents,openai]",
+]
+# Solo para desarrollo
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+
+[project.scripts]
+gen-peru-poblacion = "gen_peru_poblacion.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/[tu-usuario]/gen-peru-poblacion"
+Repository = "https://github.com/[tu-usuario]/gen-peru-poblacion"
+Issues = "https://github.com/[tu-usuario]/gen-peru-poblacion/issues"
+Documentation = "https://github.com/[tu-usuario]/gen-peru-poblacion#readme"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gen_peru_poblacion"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=gen_peru_poblacion --cov-report=term-missing"
