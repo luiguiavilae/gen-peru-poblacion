@@ -1,2 +1,59 @@
 .DS_Store
 **/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Build y distribución
+dist/
+build/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Herramientas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+
+# Cobertura
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secretos y configuración local
+.env
+.env.*
+*.key
+
+# Caché de modelos SDV (generado automáticamente — no versionar)
+.sdv_model_*.pkl
+
+# Archivos generados por la CLI / examples (salida local)
+output/
+output_ejemplo/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
