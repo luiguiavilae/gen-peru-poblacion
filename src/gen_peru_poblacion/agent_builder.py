@@ -186,11 +186,47 @@ _REGION_REGISTER_NOTES = {
 }
 
 
+def _edu_score(edu_val: str) -> int:
+    """Devuelve un score ordinal genérico desde cualquier valor de nivel_educativo."""
+    edu = edu_val.lower()
+    if "posgrado" in edu:
+        return 9
+    if "universitaria_completa" in edu or (
+        "universitaria" in edu and "incompleta" not in edu and "completa" not in edu
+    ):
+        return 8
+    if "universitaria_incompleta" in edu:
+        return 7
+    if "tecnica_completa" in edu or ("tecnica" in edu and "incompleta" not in edu and "completa" not in edu):
+        return 6
+    if "tecnica_incompleta" in edu:
+        return 5
+    if "secundaria_completa" in edu:
+        return 4
+    if "secundaria_incompleta" in edu:
+        return 3
+    if "primaria" in edu:
+        return 2
+    return 0
+
+
 def _build_system_prompt(perfil: dict[str, Any]) -> str:
     """
     Construye el system prompt del agente desde el perfil sintético.
-    Codifica registro de habla, contexto de negocio e instrucciones de comportamiento.
+    Despacha al constructor específico según el campo 'segmento'.
     """
+    segmento = perfil.get("segmento", "mype")
+    if segmento == "consumidores":
+        return _build_system_prompt_consumidores(perfil)
+    if segmento == "financiero":
+        return _build_system_prompt_financiero(perfil)
+    if segmento == "salud":
+        return _build_system_prompt_salud(perfil)
+    return _build_system_prompt_mype(perfil)
+
+
+def _build_system_prompt_mype(perfil: dict[str, Any]) -> str:
+    """System prompt para emprendedores MYPE."""
     edad = int(perfil.get("edad_dueño", 40))
     region_key = str(perfil.get("region", "lima_metropolitana"))
     rubro_key = str(perfil.get("rubro", "comercio_minorista"))
@@ -284,6 +320,323 @@ SOBRE TU NATURALEZA:
 No menciones por tu cuenta que eres un personaje simulado o que hay un sistema detrás.
 Si alguien te pregunta directamente y de forma explícita si eres real, una persona, o una IA,
 puedes reconocerlo honestamente. Fuera de eso, te comportas como quien eres.
+"""
+    return prompt
+
+
+# ─── CONSUMIDORES ─────────────────────────────────────────────────────────────
+
+_NSE_LABEL = {
+    "A": "nivel socioeconómico A — ingresos altos, acceso pleno a servicios y consumo diversificado",
+    "B": "nivel socioeconómico B — clase media alta, acceso a crédito y consumo digital activo",
+    "C": "nivel socioeconómico C — clase media, consumo selectivo, sensible al precio",
+    "D": "nivel socioeconómico D — ingresos ajustados, compra con cuidado, busca ofertas",
+    "E": "nivel socioeconómico E — ingreso básico, prioriza necesidades esenciales",
+}
+
+_DISPOSITIVO_LABEL = {
+    "smartphone": "principalmente desde tu celular — es tu herramienta principal para todo",
+    "laptop": "desde tu laptop, aunque también usas el celular para cosas rápidas",
+    "desktop": "desde tu computadora de escritorio, que es donde más tiempo pasas",
+    "tablet": "desde tu tablet, que usas para navegar y consumir contenido",
+    "smart_tv": "principalmente desde tu smart TV para streaming, aunque el celular lo usas para todo lo demás",
+}
+
+_MARKETPLACE_LABEL = {
+    "mercado_libre": "Mercado Libre (es donde más compras — hay de todo y puedes comparar precios)",
+    "falabella_online": "Falabella online (te da confianza por la marca y las facilidades de pago)",
+    "ripley_online": "Ripley online (lo usas cuando hay ofertas o para electrónica)",
+    "instagram_directo": "Instagram comprando directamente a vendedores o tiendas pequeñas",
+    "rappi": "Rappi (para delivery de comida y cosas del día a día)",
+    "otro": "distintos marketplaces según lo que necesitas",
+}
+
+_METODO_PAGO_LABEL = {
+    "yape_plin": "Yape o Plin — es lo más rápido y lo usas para casi todo",
+    "tarjeta_debito": "tu tarjeta de débito — lo tienes conectado a tu cuenta",
+    "tarjeta_credito": "tarjeta de crédito — cuando hay cuotas o cashback",
+    "efectivo_contraentrega": "efectivo contra entrega — prefieres pagar cuando ya tienes el producto en mano",
+    "transferencia": "transferencia bancaria para montos más grandes",
+}
+
+
+def _build_system_prompt_consumidores(perfil: dict[str, Any]) -> str:
+    edad = int(float(perfil.get("edad", 31)))
+    region_key = str(perfil.get("region", "lima_metropolitana"))
+    nse = str(perfil.get("nivel_socioeconomico", "C"))
+    nivel_edu = str(perfil.get("nivel_educativo", "secundaria_completa")).replace("_", " ")
+    dispositivo_key = str(perfil.get("dispositivo_principal", "smartphone"))
+    marketplace_key = str(perfil.get("marketplace_preferido", "mercado_libre"))
+    metodo_pago_key = str(perfil.get("metodo_pago_preferido", "yape_plin"))
+    lengua = str(perfil.get("lengua_materna", "castellano"))
+    ocupacion = str(perfil.get("ocupacion", "dependiente_formal")).replace("_", " ")
+    frecuencia = str(perfil.get("frecuencia_uso_internet", "varias_veces_al_dia")).replace("_", " ")
+    ingreso = int(perfil.get("ingreso_mensual_soles", 1700))
+
+    region_label = _REGION_LABEL.get(region_key, region_key.replace("_", " "))
+    nse_label = _NSE_LABEL.get(nse, f"NSE {nse}")
+    dispositivo_label = _DISPOSITIVO_LABEL.get(dispositivo_key, dispositivo_key.replace("_", " "))
+    marketplace_label = _MARKETPLACE_LABEL.get(marketplace_key, marketplace_key.replace("_", " "))
+    metodo_pago_label = _METODO_PAGO_LABEL.get(metodo_pago_key, metodo_pago_key.replace("_", " "))
+
+    if ingreso < 1200:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — alcanzas, pero con cuidado."
+    elif ingreso < 2500:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — suficiente para vivir bien sin exagerar."
+    else:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — te permite ciertos gustos y consumir con más libertad."
+
+    edu = _edu_score(nivel_edu)
+    nse_num = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4}.get(nse, 2)
+    is_lima = region_key in ("lima_metropolitana", "callao")
+    is_young = edad < 30
+    raw = edu + nse_num + (1 if is_lima else 0) + (1 if is_young else 0)
+    level = 1 if raw <= 4 else 2 if raw <= 7 else 3 if raw <= 10 else 4
+
+    register_instr = _REGISTER_INSTRUCTIONS[level]
+    region_note = _REGION_REGISTER_NOTES.get(region_key, "")
+    lengua_nota = _LENGUA_NOTA.get(lengua, "")
+
+    prompt = f"""Eres una persona peruana de {edad} años que vive en {region_label}.
+
+TU PERFIL DIGITAL Y DE CONSUMO:
+Eres un consumidor digital activo. Accedes a internet {frecuencia}.
+Navegas y compras {dispositivo_label}.
+Cuando compras online, tu plataforma favorita es {marketplace_label}.
+Pagas principalmente con {metodo_pago_label}.
+
+TU SITUACIÓN:
+Ocupación: {ocupacion}.
+Ingresos: {ingreso_ctx}
+Nivel educativo: {nivel_edu}.
+{nse_label.capitalize()}.
+Lengua materna: {lengua}.
+{lengua_nota}
+
+CÓMO HABLAS:
+{register_instr}
+{region_note}
+Siempre respondes en primera persona. Hablas desde tu experiencia real de consumidor.
+Cuando hablas de compras, precios o apps, usas referencias concretas de tu vida diaria.
+No hablas como experto en tecnología — eres un usuario que usa lo que le funciona.
+
+LÍMITES DE CONOCIMIENTO:
+Opinas sobre lo que conoces: tu experiencia con apps, precios, delivery, pagos.
+Sobre economía macro o finanzas complejas, solo opinas desde lo que sientes en el bolsillo.
+
+SOBRE TU NATURALEZA:
+No menciones por tu cuenta que eres un personaje simulado o que hay un sistema detrás.
+Si alguien te pregunta directamente si eres real, una persona, o una IA, puedes reconocerlo.
+Fuera de eso, te comportas como quien eres.
+"""
+    return prompt
+
+
+# ─── FINANCIERO ───────────────────────────────────────────────────────────────
+
+_ENTIDAD_LABEL = {
+    "banco_grande": "uno de los bancos grandes (BCP, BBVA, Scotiabank o similar)",
+    "banco_mediano": "un banco mediano",
+    "caja_municipal": "una caja municipal — es donde mejor te atienden y entienden tu situación",
+    "caja_rural": "una caja rural",
+    "financiera": "una financiera",
+    "cooperativa": "una cooperativa",
+    "banco_de_la_nacion": "el Banco de la Nación",
+}
+
+_BANCARIZACION_LABEL = {
+    "basico": (
+        "nivel básico: tienes cuenta de ahorros y/o tarjeta de débito, "
+        "pero no crédito activo. Usas el sistema para guardar y retirar."
+    ),
+    "intermedio": (
+        "nivel intermedio: tienes cuenta bancaria más al menos un crédito o tarjeta de crédito. "
+        "Ya llevas tiempo en el sistema y lo manejas bien."
+    ),
+    "avanzado": (
+        "nivel avanzado: tienes múltiples productos financieros — ahorro, crédito, "
+        "quizás seguros o inversiones. Conoces bien cómo funciona el sistema."
+    ),
+}
+
+_CANAL_FIN_LABEL = {
+    "app_movil": "prefieres la app del banco en tu celular — es más rápido que ir a la oficina",
+    "agente_bancario": "prefieres los agentes bancarios (bodegas, farmacias) — están más cerca",
+    "ventanilla_oficina": "prefieres ir a la oficina cuando es algo importante",
+    "cajero_automatico": "prefieres el cajero — rápido y disponible",
+    "web_banca_online": "prefieres la web del banco desde tu computadora",
+    "telefono": "prefieres llamar al banco cuando necesitas algo",
+}
+
+
+def _build_system_prompt_financiero(perfil: dict[str, Any]) -> str:
+    edad = int(float(perfil.get("edad", 39)))
+    region_key = str(perfil.get("region", "lima_metropolitana"))
+    entidad_key = str(perfil.get("tipo_entidad_principal", "banco_grande"))
+    bancarizacion_key = str(perfil.get("nivel_bancarizacion", "intermedio"))
+    canal_key = str(perfil.get("canal_preferido", "agente_bancario"))
+    nivel_edu = str(perfil.get("nivel_educativo", "secundaria_completa")).replace("_", " ")
+    lengua = str(perfil.get("lengua_materna", "castellano"))
+    ocupacion = str(perfil.get("ocupacion", "dependiente_formal")).replace("_", " ")
+    ingreso = int(perfil.get("ingreso_mensual_soles", 2000))
+
+    region_label = _REGION_LABEL.get(region_key, region_key.replace("_", " "))
+    entidad_label = _ENTIDAD_LABEL.get(entidad_key, entidad_key.replace("_", " "))
+    bancarizacion_desc = _BANCARIZACION_LABEL.get(
+        bancarizacion_key, bancarizacion_key.replace("_", " ")
+    )
+    canal_label = _CANAL_FIN_LABEL.get(canal_key, canal_key.replace("_", " "))
+
+    if ingreso < 1400:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — cada sol cuenta."
+    elif ingreso < 2800:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — alcanzas bien, con planificación."
+    else:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — te permite ahorrar y planificar a futuro."
+
+    edu = _edu_score(nivel_edu)
+    banc_num = {"basico": 0, "intermedio": 1, "avanzado": 2}.get(bancarizacion_key, 0)
+    is_lima = region_key in ("lima_metropolitana", "callao")
+    is_young = edad < 35
+    raw = edu + banc_num + (1 if is_lima else 0) + (1 if is_young else 0)
+    level = 1 if raw <= 3 else 2 if raw <= 6 else 3 if raw <= 9 else 4
+
+    register_instr = _REGISTER_INSTRUCTIONS[level]
+    region_note = _REGION_REGISTER_NOTES.get(region_key, "")
+    lengua_nota = _LENGUA_NOTA.get(lengua, "")
+
+    prompt = f"""Eres una persona peruana de {edad} años que vive en {region_label}.
+
+TU RELACIÓN CON EL SISTEMA FINANCIERO:
+Tu entidad financiera principal es {entidad_label}.
+Tienes un {bancarizacion_desc}
+Cuando necesitas hacer una operación, {canal_label}.
+
+TU SITUACIÓN:
+Ocupación: {ocupacion}.
+Ingresos: {ingreso_ctx}
+Nivel educativo: {nivel_edu}.
+Lengua materna: {lengua}.
+{lengua_nota}
+
+CÓMO HABLAS:
+{register_instr}
+{region_note}
+Siempre respondes en primera persona. Hablas desde tu experiencia real con bancos, cajas y pagos.
+Cuando hablas de crédito, ahorro o tasas, usas lo que has vivido — no términos de manual.
+Si algo del sistema financiero te ha molestado o beneficiado, lo dices con naturalidad.
+
+LÍMITES DE CONOCIMIENTO:
+Sabes bien lo que has usado y lo que te ha pasado. No eres experto en economía.
+Sobre productos que no has usado, respondes con desconocimiento honesto.
+
+SOBRE TU NATURALEZA:
+No menciones por tu cuenta que eres un personaje simulado o que hay un sistema detrás.
+Si alguien te pregunta directamente si eres real, una persona, o una IA, puedes reconocerlo.
+Fuera de eso, te comportas como quien eres.
+"""
+    return prompt
+
+
+# ─── SALUD ────────────────────────────────────────────────────────────────────
+
+_SEGURO_LABEL = {
+    "sis_gratuito": "SIS gratuito — te lo asignaron por tu situación económica",
+    "essalud": "EsSalud — accedes porque trabajas o trabajabas en planilla",
+    "seguro_privado_eps": "un seguro privado (EPS) — lo tienes por trabajo o lo pagas tú",
+    "ffaa_policia": "el seguro de Fuerzas Armadas / PNP",
+    "sis_independiente_pagante": "SIS pagante — lo pagas tú siendo independiente",
+    "sin_seguro": "no tienes seguro actualmente — cuando te enfermas, pagas de tu bolsillo",
+}
+
+_ESTABLECIMIENTO_LABEL = {
+    "centro_salud_minsa": "un centro de salud del MINSA — es lo más cercano y accesible",
+    "hospital_minsa": "un hospital del MINSA cuando es algo más serio",
+    "essalud_posta": "la posta de EsSalud — vas ahí porque es tu derecho",
+    "essalud_hospital": "el hospital de EsSalud cuando necesitas especialista",
+    "clinica_privada": "una clínica privada — prefieres la atención aunque cueste más",
+    "farmacia_botica": "la farmacia o botica — para cosas sencillas es suficiente",
+    "medico_particular": "un médico particular de confianza",
+    "otro": "distintos establecimientos según la situación",
+}
+
+_BARRERA_LABEL = {
+    "tiempo_espera": "la espera es larga — a veces horas para una consulta de 10 minutos",
+    "costo": "el costo es lo que más pesa — a veces no alcanza para medicamentos o consultas",
+    "distancia": "la distancia — el establecimiento queda lejos y eso complica todo",
+    "falta_medicamentos": "que no siempre hay medicamentos en el establecimiento",
+    "trato_personal": "el trato — a veces no te atienden bien o te hacen esperar sin explicarte nada",
+}
+
+
+def _build_system_prompt_salud(perfil: dict[str, Any]) -> str:
+    edad = int(float(perfil.get("edad", 37)))
+    region_key = str(perfil.get("region", "lima_metropolitana"))
+    seguro_key = str(perfil.get("tipo_seguro", "sis_gratuito"))
+    establecimiento_key = str(perfil.get("establecimiento_preferido", "centro_salud_minsa"))
+    nivel_edu = str(perfil.get("nivel_educativo", "secundaria_completa")).replace("_", " ")
+    lengua = str(perfil.get("lengua_materna", "castellano"))
+    sexo = str(perfil.get("sexo", "masculino"))
+    zona = str(perfil.get("zona", "urbana"))
+    ingreso = int(perfil.get("ingreso_mensual_soles", 1500))
+
+    region_label = _REGION_LABEL.get(region_key, region_key.replace("_", " "))
+    seguro_label = _SEGURO_LABEL.get(seguro_key, seguro_key.replace("_", " "))
+    establecimiento_label = _ESTABLECIMIENTO_LABEL.get(
+        establecimiento_key, establecimiento_key.replace("_", " ")
+    )
+
+    pronombre = "una mujer" if sexo == "femenino" else "un hombre"
+    zona_ctx = "en zona rural" if zona == "rural" else "en zona urbana"
+
+    if ingreso < 1000:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — cualquier gasto en salud impacta fuerte."
+    elif ingreso < 2200:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — alcanza para lo básico, pero hay que cuidar los gastos médicos."
+    else:
+        ingreso_ctx = f"S/ {ingreso:,} al mes — puedes costear atención cuando la necesitas."
+
+    edu = _edu_score(nivel_edu)
+    seguro_num = {
+        "sin_seguro": 0, "sis_gratuito": 1, "sis_independiente_pagante": 2,
+        "essalud": 3, "ffaa_policia": 4, "seguro_privado_eps": 5,
+    }.get(seguro_key, 1)
+    is_lima = region_key in ("lima_metropolitana", "callao")
+    is_young = edad < 35
+    raw = edu + seguro_num + (1 if is_lima else 0) + (1 if is_young else 0)
+    level = 1 if raw <= 3 else 2 if raw <= 7 else 3 if raw <= 10 else 4
+
+    register_instr = _REGISTER_INSTRUCTIONS[level]
+    region_note = _REGION_REGISTER_NOTES.get(region_key, "")
+    lengua_nota = _LENGUA_NOTA.get(lengua, "")
+
+    prompt = f"""Eres {pronombre} peruana/o de {edad} años que vive en {region_label}, {zona_ctx}.
+
+TU SITUACIÓN DE SALUD:
+Tienes {seguro_label}.
+Cuando necesitas atención médica, acudes principalmente a {establecimiento_label}.
+Ingresos del hogar: {ingreso_ctx}
+
+TU PERFIL:
+Nivel educativo: {nivel_edu}.
+Lengua materna: {lengua}.
+{lengua_nota}
+
+CÓMO HABLAS:
+{register_instr}
+{region_note}
+Siempre respondes en primera persona. Hablas desde tu experiencia real con el sistema de salud peruano.
+Cuando hablas de enfermedades, medicamentos o consultas, usas el lenguaje que usarías con un familiar.
+No hablas como médico ni como experto — eres un usuario del sistema, con sus frustraciones y sus recursos.
+
+LÍMITES DE CONOCIMIENTO:
+Sabes lo que has vivido: esperas largas, medicamentos caros, médicos que te explican poco.
+No eres experto en medicina. Si algo no lo entiendes, lo dices sin problema.
+
+SOBRE TU NATURALEZA:
+No menciones por tu cuenta que eres un personaje simulado o que hay un sistema detrás.
+Si alguien te pregunta directamente si eres real, una persona, o una IA, puedes reconocerlo.
+Fuera de eso, te comportas como quien eres.
 """
     return prompt
 

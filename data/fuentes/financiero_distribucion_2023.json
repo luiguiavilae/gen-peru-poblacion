@@ -1,0 +1,259 @@
+{
+  "_metadata": {
+    "fuente_primaria": "SBS — Reporte de Indicadores de Inclusión Financiera 2023",
+    "fuente_secundaria": "BCRP — Encuesta de Demanda de Servicios Financieros 2023",
+    "fuente_terciaria": "INEI — ENAHO 2023 Módulo de Condiciones de Vida",
+    "url_sbs_inclusion": "https://www.sbs.gob.pe/inclusion-financiera/Informacion-estadistica/indicadores-inclusion-financiera",
+    "url_bcrp_encuesta": "https://www.bcrp.gob.pe/docs/Publicaciones/Documentos-de-Trabajo/encuesta-demanda-servicios-financieros.pdf",
+    "url_inei": "https://iinei.inei.gob.pe/microdatos/",
+    "año": 2023,
+    "nota": "Distribuciones agregadas. Verificar contra SBS Perú antes de publicar nueva versión. Algunos indicadores tienen frecuencia trimestral — se usa el promedio anual 2023.",
+    "segmento": "financiero",
+    "definicion": "Personas mayores de 18 años con al menos un producto financiero activo (cuenta de ahorros, crédito, seguro o pensión) en el sistema financiero peruano regulado por SBS"
+  },
+
+  "edad": {
+    "_descripcion": "Distribución etaria de usuarios del sistema financiero (SBS 2023)",
+    "_fuente": "SBS-Indicadores-IF-2023 Tabla 2.1",
+    "media": 39.2,
+    "std": 12.8,
+    "min": 18,
+    "max": 75,
+    "p25": 28,
+    "p50": 38,
+    "p75": 50,
+    "distribucion_grupo": {
+      "18_25": 0.14,
+      "26_35": 0.26,
+      "36_45": 0.25,
+      "46_55": 0.20,
+      "56_65": 0.11,
+      "66_mas": 0.04
+    }
+  },
+
+  "sexo": {
+    "_descripcion": "Distribución por sexo de usuarios financieros (SBS 2023)",
+    "_fuente": "SBS-Indicadores-IF-2023 Tabla 2.2",
+    "masculino": 0.54,
+    "femenino": 0.46
+  },
+
+  "region": {
+    "_descripcion": "Distribución geográfica de cuentas activas por macrorregión (SBS 2023)",
+    "_fuente": "SBS-Indicadores-IF-2023 Tabla 1.1 — Puntos de acceso por departamento",
+    "valores": {
+      "lima_metropolitana": 0.44,
+      "costa_norte": 0.12,
+      "costa_sur": 0.07,
+      "sierra_norte": 0.06,
+      "sierra_centro": 0.10,
+      "sierra_sur": 0.11,
+      "selva": 0.07,
+      "callao": 0.03
+    }
+  },
+
+  "tipo_entidad_principal": {
+    "_descripcion": "Tipo de entidad financiera principal del usuario (SBS 2023)",
+    "_fuente": "SBS-Estadisticas-SF-2023 Tabla 3.1",
+    "valores": {
+      "banco_grande": 0.48,
+      "banco_mediano": 0.12,
+      "caja_municipal": 0.19,
+      "caja_rural": 0.05,
+      "financiera": 0.08,
+      "cooperativa": 0.05,
+      "banco_de_la_nacion": 0.03
+    }
+  },
+
+  "productos_activos": {
+    "_descripcion": "Productos financieros activos por tipo (respuesta múltiple, SBS 2023)",
+    "_fuente": "SBS-Indicadores-IF-2023 Tabla 4.1",
+    "cuenta_ahorros": 0.78,
+    "cuenta_corriente": 0.12,
+    "credito_consumo": 0.34,
+    "credito_hipotecario": 0.09,
+    "credito_mype": 0.18,
+    "tarjeta_credito": 0.31,
+    "tarjeta_debito": 0.72,
+    "seguro_vida": 0.21,
+    "seguro_salud_privado": 0.18,
+    "afp_pensiones": 0.38,
+    "deposito_plazo_fijo": 0.08
+  },
+
+  "nivel_bancarizacion": {
+    "_descripcion": "Nivel de profundidad de uso del sistema financiero (SBS + BCRP 2023)",
+    "_fuente": "BCRP-Encuesta-Demanda-SF-2023",
+    "valores": {
+      "basico": 0.35,
+      "intermedio": 0.42,
+      "avanzado": 0.23
+    },
+    "definicion_niveles": {
+      "basico": "Solo cuenta de ahorros y/o tarjeta de débito, sin crédito activo",
+      "intermedio": "Cuenta + al menos un crédito o tarjeta de crédito",
+      "avanzado": "Múltiples productos, incluye inversión, seguro o hipoteca"
+    }
+  },
+
+  "credito": {
+    "_descripcion": "Características de créditos activos (SBS 2023)",
+    "_fuente": "SBS-Estadisticas-SF-2023 Reporte-Creditos",
+    "tiene_credito_activo": 0.46,
+    "tipo_credito_principal": {
+      "consumo_personal": 0.38,
+      "tarjeta_credito": 0.28,
+      "mype": 0.18,
+      "hipotecario": 0.09,
+      "vehicular": 0.05,
+      "otro": 0.02
+    },
+    "monto_credito_soles": {
+      "media": 18500,
+      "p25": 3000,
+      "p50": 9500,
+      "p75": 28000
+    },
+    "mora_al_dia": 0.88,
+    "dias_mora_promedio_con_mora": 45,
+    "tasa_interes_promedio_anual": {
+      "consumo": 0.42,
+      "tarjeta": 0.58,
+      "mype": 0.31,
+      "hipotecario": 0.10
+    }
+  },
+
+  "ahorro": {
+    "_descripcion": "Comportamiento de ahorro formal e informal (BCRP + ENAHO 2023)",
+    "_fuente": "BCRP-Encuesta-Demanda-SF-2023 + INEI-ENAHO-2023",
+    "ahorra_formalmente": 0.42,
+    "ahorra_informalmente": 0.31,
+    "no_ahorra": 0.27,
+    "metodo_ahorro_informal": {
+      "efectivo_casa": 0.58,
+      "junta_pandero": 0.28,
+      "prestado_familiar": 0.09,
+      "otro": 0.05
+    },
+    "monto_ahorro_mensual_soles": {
+      "media": 380,
+      "p25": 100,
+      "p50": 250,
+      "p75": 550
+    }
+  },
+
+  "canal_preferido": {
+    "_descripcion": "Canal preferido para operaciones financieras (SBS + BCRP 2023)",
+    "_fuente": "BCRP-Encuesta-Demanda-SF-2023 Tabla 5.1",
+    "valores": {
+      "app_movil": 0.38,
+      "agente_bancario": 0.24,
+      "ventanilla_oficina": 0.18,
+      "cajero_automatico": 0.12,
+      "web_banca_online": 0.05,
+      "telefono": 0.03
+    }
+  },
+
+  "inclusion_digital_financiera": {
+    "_descripcion": "Adopción de herramientas financieras digitales (SBS 2023)",
+    "_fuente": "SBS-Indicadores-IF-2023 Tabla 6.1",
+    "usa_yape": 0.54,
+    "usa_plin": 0.31,
+    "usa_app_banco_movil": 0.48,
+    "realizo_transferencia_digital_ultimo_mes": 0.42,
+    "pago_servicio_online_ultimo_mes": 0.38,
+    "nunca_uso_canal_digital": 0.19
+  },
+
+  "ingreso_mensual_soles": {
+    "_descripcion": "Ingreso mensual de usuarios del sistema financiero (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-Empleo cruzado con tenencia de productos SBS",
+    "media": 2450,
+    "std": 1800,
+    "min": 600,
+    "max": 20000,
+    "p25": 1200,
+    "p50": 2000,
+    "p75": 3200,
+    "por_tipo_entidad": {
+      "banco_grande_mediana": 3100,
+      "caja_municipal_mediana": 1600,
+      "financiera_mediana": 1400
+    }
+  },
+
+  "nivel_educativo": {
+    "_descripcion": "Nivel educativo de usuarios del sistema financiero (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023 cruzado con SBS 2023",
+    "valores": {
+      "primaria_o_menos": 0.08,
+      "secundaria_incompleta": 0.09,
+      "secundaria_completa": 0.28,
+      "tecnica": 0.21,
+      "universitaria_incompleta": 0.09,
+      "universitaria_completa": 0.19,
+      "posgrado": 0.06
+    }
+  },
+
+  "ocupacion": {
+    "_descripcion": "Situación laboral de usuarios financieros (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-Empleo",
+    "valores": {
+      "dependiente_formal": 0.38,
+      "dependiente_informal": 0.14,
+      "independiente_mype": 0.22,
+      "independiente_profesional": 0.09,
+      "jubilado_pensionista": 0.08,
+      "ama_de_casa": 0.06,
+      "estudiante": 0.03
+    }
+  },
+
+  "percepcion_sistema_financiero": {
+    "_descripcion": "Percepciones y barreras hacia el sistema financiero (BCRP 2023)",
+    "_fuente": "BCRP-Encuesta-Demanda-SF-2023 Módulo Percepciones",
+    "confianza_alta": 0.28,
+    "confianza_media": 0.45,
+    "confianza_baja": 0.27,
+    "barrera_principal_no_bancarizados": {
+      "no_necesito": 0.31,
+      "no_tengo_ingresos_suficientes": 0.28,
+      "desconfianza": 0.19,
+      "tramites_complicados": 0.14,
+      "no_hay_oficina_cerca": 0.08
+    }
+  },
+
+  "lengua_materna": {
+    "_descripcion": "Lengua materna de usuarios financieros (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-100",
+    "valores": {
+      "castellano": 0.78,
+      "quechua": 0.14,
+      "aymara": 0.04,
+      "otra_nativa": 0.02,
+      "bilingue": 0.02
+    }
+  },
+
+  "correlaciones_conocidas": {
+    "_descripcion": "Correlaciones documentadas entre variables para calibración SDV",
+    "_fuente": "Estimadas desde cruces SBS/BCRP/ENAHO 2023",
+    "nivel_bancarizacion_vs_ingreso": 0.52,
+    "credito_activo_vs_ingreso": 0.41,
+    "canal_digital_vs_edad_inversa": -0.38,
+    "canal_digital_vs_nivel_educativo": 0.44,
+    "mora_vs_ingreso_inversa": -0.29,
+    "ahorro_formal_vs_ingreso": 0.47,
+    "tarjeta_credito_vs_nivel_bancarizacion": 0.58,
+    "confianza_vs_nivel_educativo": 0.31,
+    "yape_vs_edad_menor_40": 0.42
+  }
+}

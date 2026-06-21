@@ -1,0 +1,243 @@
+{
+  "_metadata": {
+    "fuente_primaria": "INEI — Encuesta Nacional de Hogares (ENAHO) 2023, Módulo 500 (TIC)",
+    "fuente_secundaria": "OSIPTEL — Encuesta Residencial de Servicios de Telecomunicaciones (ERESTEL) 2023",
+    "fuente_terciaria": "IPSOS Peru — Perfil del usuario de internet Peru 2023",
+    "url_inei_tic": "https://iinei.inei.gob.pe/microdatos/",
+    "url_osiptel": "https://www.osiptel.gob.pe/repositorioaps/data/1/1/1/par/erestel-2023/ERESTEL2023.pdf",
+    "url_ipsos": "https://www.ipsos.com/es-pe/perfil-del-usuario-de-internet-en-el-peru",
+    "año": 2023,
+    "nota": "Distribuciones agregadas para calibración sintética. Ningún dato es trazable a personas individuales. Verificar contra fuentes antes de publicar nueva versión.",
+    "segmento": "consumidores_digitales",
+    "definicion": "Personas que usan internet al menos una vez por semana y han realizado al menos una actividad digital en los últimos 3 meses (compra, pago, streaming, redes sociales)"
+  },
+
+  "edad": {
+    "_descripcion": "Distribución etaria de usuarios digitales activos (ENAHO 2023 módulo TIC)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-TIC Tabla 3.1",
+    "media": 31.4,
+    "std": 10.2,
+    "min": 15,
+    "max": 65,
+    "p25": 22,
+    "p50": 29,
+    "p75": 40,
+    "distribucion_grupo": {
+      "15_24": 0.28,
+      "25_34": 0.31,
+      "35_44": 0.22,
+      "45_54": 0.13,
+      "55_65": 0.06
+    }
+  },
+
+  "sexo": {
+    "_descripcion": "Distribución por sexo usuarios digitales (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-TIC Tabla 2.1",
+    "masculino": 0.52,
+    "femenino": 0.48
+  },
+
+  "region": {
+    "_descripcion": "Distribución geográfica de usuarios digitales activos (OSIPTEL ERESTEL 2023)",
+    "_fuente": "OSIPTEL-ERESTEL-2023 Tabla 1.2",
+    "valores": {
+      "lima_metropolitana": 0.46,
+      "costa_norte": 0.13,
+      "costa_sur": 0.07,
+      "sierra_norte": 0.05,
+      "sierra_centro": 0.09,
+      "sierra_sur": 0.08,
+      "selva": 0.07,
+      "callao": 0.05
+    }
+  },
+
+  "nivel_socioeconomico": {
+    "_descripcion": "NSE de usuarios digitales activos (IPSOS 2023 + APEIM 2023)",
+    "_fuente": "IPSOS-Perfil-Usuario-Internet-Peru-2023",
+    "valores": {
+      "A": 0.07,
+      "B": 0.21,
+      "C": 0.38,
+      "D": 0.27,
+      "E": 0.07
+    }
+  },
+
+  "nivel_educativo": {
+    "_descripcion": "Nivel educativo de usuarios digitales (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-TIC Tabla 4.1",
+    "valores": {
+      "secundaria_incompleta": 0.08,
+      "secundaria_completa": 0.29,
+      "tecnica_incompleta": 0.07,
+      "tecnica_completa": 0.18,
+      "universitaria_incompleta": 0.14,
+      "universitaria_completa": 0.19,
+      "posgrado": 0.05
+    }
+  },
+
+  "dispositivo_principal": {
+    "_descripcion": "Dispositivo principal de acceso a internet (OSIPTEL ERESTEL 2023)",
+    "_fuente": "OSIPTEL-ERESTEL-2023 Tabla 3.1",
+    "valores": {
+      "smartphone": 0.71,
+      "laptop": 0.16,
+      "desktop": 0.07,
+      "tablet": 0.04,
+      "smart_tv": 0.02
+    }
+  },
+
+  "frecuencia_uso_internet": {
+    "_descripcion": "Frecuencia de uso de internet (OSIPTEL ERESTEL 2023)",
+    "_fuente": "OSIPTEL-ERESTEL-2023 Tabla 2.3",
+    "valores": {
+      "varias_veces_al_dia": 0.58,
+      "una_vez_al_dia": 0.24,
+      "varias_veces_semana": 0.14,
+      "una_vez_semana": 0.04
+    }
+  },
+
+  "actividades_digitales": {
+    "_descripcion": "Actividades realizadas en internet últimos 3 meses (respuesta múltiple, ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-TIC Tabla 5.2",
+    "redes_sociales": 0.89,
+    "mensajeria_whatsapp": 0.92,
+    "streaming_video": 0.67,
+    "compras_online": 0.38,
+    "pagos_online": 0.31,
+    "banca_digital": 0.28,
+    "busqueda_informacion": 0.84,
+    "entretenimiento_juegos": 0.41,
+    "trabajo_remoto": 0.23,
+    "educacion_online": 0.29
+  },
+
+  "ecommerce": {
+    "_descripcion": "Comportamiento de compra online (IPSOS 2023 + ENAHO 2023)",
+    "_fuente": "IPSOS-Perfil-Usuario-Internet-Peru-2023 + INEI-ENAHO-2023",
+    "compro_ultimo_mes": 0.38,
+    "frecuencia_compra_mensual": {
+      "1_vez": 0.44,
+      "2_3_veces": 0.38,
+      "4_mas_veces": 0.18
+    },
+    "categoria_principal": {
+      "ropa_calzado": 0.31,
+      "electronica": 0.22,
+      "alimentos_delivery": 0.19,
+      "belleza_cuidado": 0.12,
+      "hogar": 0.09,
+      "otro": 0.07
+    },
+    "marketplace_preferido": {
+      "mercado_libre": 0.38,
+      "falabella_online": 0.18,
+      "ripley_online": 0.11,
+      "instagram_directo": 0.14,
+      "rappi": 0.09,
+      "otro": 0.10
+    },
+    "metodo_pago_preferido": {
+      "yape_plin": 0.34,
+      "tarjeta_debito": 0.28,
+      "tarjeta_credito": 0.21,
+      "efectivo_contraentrega": 0.12,
+      "transferencia": 0.05
+    },
+    "ticket_promedio_soles": {
+      "media": 145,
+      "p25": 50,
+      "p50": 110,
+      "p75": 220
+    }
+  },
+
+  "redes_sociales": {
+    "_descripcion": "Uso de redes sociales (IPSOS 2023)",
+    "_fuente": "IPSOS-Perfil-Usuario-Internet-Peru-2023",
+    "whatsapp": 0.92,
+    "facebook": 0.78,
+    "tiktok": 0.61,
+    "instagram": 0.54,
+    "youtube": 0.73,
+    "twitter_x": 0.19,
+    "linkedin": 0.14,
+    "tiempo_diario_minutos": {
+      "media": 187,
+      "p25": 90,
+      "p50": 150,
+      "p75": 270
+    }
+  },
+
+  "banca_digital": {
+    "_descripcion": "Uso de servicios financieros digitales (SBS 2023 + IPSOS 2023)",
+    "_fuente": "SBS-Indicadores-Inclusion-Financiera-2023 + IPSOS-Peru-2023",
+    "tiene_cuenta_bancaria": 0.58,
+    "usa_app_banco": 0.42,
+    "usa_yape": 0.51,
+    "usa_plin": 0.28,
+    "realizo_pago_qr_ultimo_mes": 0.35,
+    "realizó_transferencia_digital_ultimo_mes": 0.38,
+    "confianza_banca_digital": {
+      "alta": 0.31,
+      "media": 0.44,
+      "baja": 0.25
+    }
+  },
+
+  "ingreso_mensual_soles": {
+    "_descripcion": "Ingreso mensual individual de usuarios digitales activos (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-Empleo",
+    "media": 2100,
+    "std": 1400,
+    "min": 500,
+    "max": 12000,
+    "p25": 1050,
+    "p50": 1700,
+    "p75": 2800
+  },
+
+  "lengua_materna": {
+    "_descripcion": "Lengua materna de usuarios digitales (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-100",
+    "valores": {
+      "castellano": 0.84,
+      "quechua": 0.10,
+      "aymara": 0.02,
+      "otra_nativa": 0.01,
+      "bilingue": 0.03
+    }
+  },
+
+  "ocupacion": {
+    "_descripcion": "Situación laboral de usuarios digitales (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-Empleo",
+    "valores": {
+      "dependiente_formal": 0.31,
+      "dependiente_informal": 0.18,
+      "independiente": 0.22,
+      "estudiante": 0.19,
+      "desempleado": 0.06,
+      "ama_de_casa": 0.04
+    }
+  },
+
+  "correlaciones_conocidas": {
+    "_descripcion": "Correlaciones documentadas entre variables para calibración SDV",
+    "_fuente": "Estimadas desde cruces ENAHO/ERESTEL/IPSOS 2023",
+    "compra_online_vs_nse": 0.44,
+    "banca_digital_vs_edad_inversa": -0.29,
+    "frecuencia_uso_vs_edad_inversa": -0.22,
+    "tiktok_vs_edad_menor_30": 0.51,
+    "compra_online_vs_nivel_educativo": 0.38,
+    "yape_vs_tiene_cuenta": 0.62,
+    "ingreso_vs_ticket_compra": 0.41,
+    "smartphone_exclusivo_vs_nse_bajo": 0.35
+  }
+}

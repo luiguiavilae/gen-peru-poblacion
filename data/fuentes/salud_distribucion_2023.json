@@ -1,0 +1,236 @@
+{
+  "_metadata": {
+    "fuente_primaria": "INEI — Encuesta Demográfica y de Salud Familiar (ENDES) 2023",
+    "fuente_secundaria": "MINSA — Análisis de Situación de Salud (ASIS) Peru 2023",
+    "fuente_terciaria": "SIS — Seguro Integral de Salud, Estadísticas de Afiliación 2023",
+    "fuente_cuaternaria": "SUSALUD — Registro de Afiliados y Prestaciones 2023",
+    "url_endes": "https://proyectos.inei.gob.pe/endes/",
+    "url_minsa_asis": "https://www.dge.gob.pe/portalnuevo/publicaciones/asis/",
+    "url_sis": "https://www.sis.gob.pe/portal/estadisticas/",
+    "url_susalud": "https://portal.susalud.gob.pe/estadisticas/",
+    "año": 2023,
+    "nota": "Distribuciones agregadas para calibración sintética. El segmento salud incluye usuarios con al menos un evento de atención de salud en los últimos 12 meses o con seguro activo. Verificar contra ENDES y MINSA antes de publicar nueva versión.",
+    "segmento": "salud",
+    "definicion": "Personas que han tenido al menos un evento de atención en salud en los últimos 12 meses (consulta, hospitalización, medicamentos) o tienen algún tipo de seguro de salud activo"
+  },
+
+  "edad": {
+    "_descripcion": "Distribución etaria de usuarios de servicios de salud (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 3.1",
+    "media": 36.8,
+    "std": 20.4,
+    "min": 0,
+    "max": 85,
+    "p25": 18,
+    "p50": 34,
+    "p75": 54,
+    "distribucion_grupo": {
+      "0_14": 0.18,
+      "15_29": 0.21,
+      "30_44": 0.22,
+      "45_59": 0.19,
+      "60_74": 0.13,
+      "75_mas": 0.07
+    }
+  },
+
+  "sexo": {
+    "_descripcion": "Distribución por sexo de usuarios de salud (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 2.1",
+    "femenino": 0.56,
+    "masculino": 0.44,
+    "_nota": "Las mujeres tienen mayor tasa de uso de servicios de salud por controles maternos y preventivos"
+  },
+
+  "region": {
+    "_descripcion": "Distribución geográfica de atenciones de salud (MINSA ASIS 2023)",
+    "_fuente": "MINSA-ASIS-2023 Tabla distribución atenciones por macrorregión",
+    "valores": {
+      "lima_metropolitana": 0.38,
+      "costa_norte": 0.12,
+      "costa_sur": 0.07,
+      "sierra_norte": 0.07,
+      "sierra_centro": 0.12,
+      "sierra_sur": 0.13,
+      "selva": 0.09,
+      "callao": 0.02
+    }
+  },
+
+  "tipo_seguro": {
+    "_descripcion": "Tipo de cobertura de seguro de salud (SUSALUD + SIS 2023)",
+    "_fuente": "SUSALUD-Registro-Afiliados-2023 + SIS-Estadisticas-2023",
+    "valores": {
+      "sis_gratuito": 0.38,
+      "essalud": 0.28,
+      "seguro_privado_eps": 0.09,
+      "ffaa_policia": 0.03,
+      "sis_independiente_pagante": 0.05,
+      "sin_seguro": 0.17
+    }
+  },
+
+  "zona": {
+    "_descripcion": "Tipo de zona de residencia del usuario (INEI 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 1.1",
+    "urbana": 0.72,
+    "rural": 0.28
+  },
+
+  "establecimiento_preferido": {
+    "_descripcion": "Tipo de establecimiento de salud al que acude principalmente (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 8.2",
+    "valores": {
+      "centro_salud_minsa": 0.31,
+      "hospital_minsa": 0.18,
+      "essalud_posta": 0.14,
+      "essalud_hospital": 0.12,
+      "clinica_privada": 0.11,
+      "farmacia_botica": 0.08,
+      "medico_particular": 0.05,
+      "otro": 0.01
+    }
+  },
+
+  "motivo_consulta_principal": {
+    "_descripcion": "Motivo principal de última consulta (ENDES 2023, respuesta única)",
+    "_fuente": "INEI-ENDES-2023 Tabla 9.1",
+    "valores": {
+      "enfermedad_aguda": 0.38,
+      "control_preventivo": 0.22,
+      "enfermedad_cronica": 0.18,
+      "emergencia": 0.09,
+      "materno_infantil": 0.08,
+      "salud_mental": 0.03,
+      "otro": 0.02
+    }
+  },
+
+  "enfermedades_cronicas": {
+    "_descripcion": "Prevalencia de enfermedades crónicas en la población usuaria (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 + MINSA-ASIS-2023",
+    "hipertension": 0.19,
+    "diabetes": 0.09,
+    "obesidad": 0.22,
+    "anemia": 0.18,
+    "tuberculosis_activa": 0.02,
+    "salud_mental_diagnosticada": 0.06,
+    "ninguna_cronica": 0.52,
+    "_nota": "Respuesta múltiple, los porcentajes no suman 100"
+  },
+
+  "acceso_medicamentos": {
+    "_descripcion": "Acceso y comportamiento frente a medicamentos (MINSA 2023)",
+    "_fuente": "MINSA-ASIS-2023 + DIGEMID-2023",
+    "compra_botica_sin_receta": 0.48,
+    "cumple_tratamiento_completo": 0.61,
+    "usa_farmacia_comunal_minsa": 0.29,
+    "compra_generico": 0.52,
+    "gasto_mensual_medicamentos_soles": {
+      "media": 85,
+      "p25": 20,
+      "p50": 55,
+      "p75": 130
+    }
+  },
+
+  "salud_digital": {
+    "_descripcion": "Uso de herramientas digitales para salud (MINSA + SUSALUD 2023)",
+    "_fuente": "SUSALUD-Encuesta-Satisfaccion-2023",
+    "usa_app_salud": 0.14,
+    "consulto_sintomas_online": 0.42,
+    "hizo_teleconsulta": 0.19,
+    "tiene_historia_clinica_digital": 0.31,
+    "conoce_portal_sis_online": 0.28,
+    "prefiere_atencion_presencial": 0.74
+  },
+
+  "satisfaccion_sistema": {
+    "_descripcion": "Satisfacción con el sistema de salud peruano (SUSALUD 2023)",
+    "_fuente": "SUSALUD-Encuesta-Satisfaccion-2023",
+    "muy_satisfecho": 0.09,
+    "satisfecho": 0.34,
+    "regular": 0.31,
+    "insatisfecho": 0.18,
+    "muy_insatisfecho": 0.08,
+    "barreras_acceso_principales": {
+      "tiempo_espera": 0.41,
+      "costo": 0.28,
+      "distancia": 0.19,
+      "falta_medicamentos": 0.08,
+      "trato_personal": 0.04
+    }
+  },
+
+  "gasto_salud_mensual_soles": {
+    "_descripcion": "Gasto mensual de bolsillo en salud (ENDES 2023 + ENAHO 2023)",
+    "_fuente": "INEI-ENDES-2023 + INEI-ENAHO-2023-Módulo-Salud",
+    "media": 142,
+    "std": 180,
+    "min": 0,
+    "max": 2000,
+    "p25": 30,
+    "p50": 80,
+    "p75": 200,
+    "por_tipo_seguro": {
+      "sin_seguro_mediana": 180,
+      "sis_mediana": 45,
+      "essalud_mediana": 60,
+      "privado_mediana": 220
+    }
+  },
+
+  "nivel_educativo": {
+    "_descripcion": "Nivel educativo de usuarios de salud (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 2.3",
+    "valores": {
+      "sin_nivel": 0.07,
+      "primaria": 0.19,
+      "secundaria_incompleta": 0.12,
+      "secundaria_completa": 0.28,
+      "tecnica": 0.14,
+      "universitaria": 0.16,
+      "posgrado": 0.04
+    }
+  },
+
+  "ingreso_mensual_soles": {
+    "_descripcion": "Ingreso mensual del hogar usuarios de salud (ENAHO 2023)",
+    "_fuente": "INEI-ENAHO-2023-Módulo-Empleo",
+    "media": 1850,
+    "std": 1400,
+    "min": 0,
+    "max": 15000,
+    "p25": 800,
+    "p50": 1500,
+    "p75": 2600
+  },
+
+  "lengua_materna": {
+    "_descripcion": "Lengua materna de usuarios de salud (ENDES 2023)",
+    "_fuente": "INEI-ENDES-2023 Tabla 2.2",
+    "valores": {
+      "castellano": 0.71,
+      "quechua": 0.19,
+      "aymara": 0.04,
+      "otra_nativa": 0.04,
+      "bilingue_quechua": 0.02
+    },
+    "_nota": "Mayor proporción de quechuahablantes que en otros segmentos por cobertura SIS en zonas altoandinas"
+  },
+
+  "correlaciones_conocidas": {
+    "_descripcion": "Correlaciones documentadas entre variables para calibración SDV",
+    "_fuente": "Estimadas desde cruces ENDES/MINSA/SUSALUD 2023",
+    "enfermedad_cronica_vs_edad": 0.48,
+    "gasto_bolsillo_vs_tipo_seguro_inversa": -0.44,
+    "satisfaccion_vs_tipo_seguro": 0.38,
+    "acceso_digital_vs_edad_inversa": -0.35,
+    "cumplimiento_tratamiento_vs_nivel_educativo": 0.31,
+    "zona_rural_vs_distancia_barrera": 0.52,
+    "sis_vs_ingreso_bajo": 0.55,
+    "clinica_privada_vs_ingreso_alto": 0.49,
+    "quechua_vs_zona_rural": 0.58,
+    "anemia_vs_zona_rural": 0.34
+  }
+}

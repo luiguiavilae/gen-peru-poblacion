@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 
-SEGMENTOS_VALIDOS = {"mype"}
+SEGMENTOS_VALIDOS = {"mype", "consumidores", "financiero", "salud"}
 REGIONES_VALIDAS = {
     "lima_metropolitana",
     "costa_norte",
@@ -12,6 +12,7 @@ REGIONES_VALIDAS = {
     "sierra_centro",
     "sierra_sur",
     "selva",
+    "callao",
 }
 FORMATOS_VALIDOS = {"csv", "json", "jsonl"}
 LLM_PROVIDERS_VALIDOS = {"deepseek", "openai", "callable", "none"}

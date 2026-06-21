@@ -12,6 +12,13 @@ from gen_peru_poblacion.exporters import export_csv, export_json, export_jsonl
 
 DATA_SOURCES = ["INEI-ENAHO-2023", "PRODUCE-ENAMIN-2023", "SBS-2023"]
 
+_DATA_SOURCES_BY_SEGMENT: dict[str, list[str]] = {
+    "mype": DATA_SOURCES,
+    "consumidores": ["INEI-ENAHO-2023", "OSIPTEL-ERESTEL-2023", "IPSOS-Peru-2023"],
+    "financiero": ["SBS-IF-2023", "BCRP-Encuesta-SF-2023", "INEI-ENAHO-2023"],
+    "salud": ["INEI-ENDES-2023", "MINSA-ASIS-2023", "SIS-2023", "SUSALUD-2023"],
+}
+
 _EXPORTERS = {
     "csv": export_csv,
     "json": export_json,
@@ -60,7 +67,8 @@ class PopulationGenerator:
             df = self._filter_or_resample_region(df, self.config.region)
 
         perfiles = df.to_dict(orient="records")
-        return [self._enrich(p) for p in perfiles]
+        sources = _DATA_SOURCES_BY_SEGMENT.get(self.config.segmento, DATA_SOURCES)
+        return [self._enrich(p, self.config.segmento, sources) for p in perfiles]
 
     def export(
         self,
@@ -91,12 +99,13 @@ class PopulationGenerator:
     # ------------------------------------------------------------------ #
 
     @staticmethod
-    def _enrich(perfil: dict[str, Any]) -> dict[str, Any]:
+    def _enrich(perfil: dict[str, Any], segmento: str, sources: list[str]) -> dict[str, Any]:
         """Agrega campos obligatorios a cada perfil generado por SDV."""
         return {
             "perfil_id": str(uuid.uuid4()),
             "synthetic": True,
-            "data_sources": DATA_SOURCES,
+            "data_sources": sources,
+            "segmento": segmento,
             **perfil,
         }
 

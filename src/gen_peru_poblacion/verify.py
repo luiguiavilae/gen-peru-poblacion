@@ -25,27 +25,61 @@ VARIABLES_PRINCIPALES = ["region", "rubro", "tamaño", "adopcion_digital", "nive
 _ADOPCION_ORD = {"nula": 0, "baja": 1, "media": 2, "alta": 3}
 _TAMAÑO_ORD = {"unipersonal": 0, "familiar_2_a_4": 1, "pequena_5_a_10": 2, "mas_de_10": 3}
 _EDUCACION_ORD = {
-    "sin_nivel": 0, "primaria_incompleta": 1, "primaria_completa": 2,
-    "secundaria_incompleta": 3, "secundaria_completa": 4,
-    "tecnica_incompleta": 5, "tecnica_completa": 6,
-    "universitaria_incompleta": 7, "universitaria_completa": 8,
+    # mype
+    "sin_nivel": 0,
+    "primaria_incompleta": 1,
+    "primaria_completa": 2,
+    "secundaria_incompleta": 3,
+    "secundaria_completa": 4,
+    "tecnica_incompleta": 5,
+    "tecnica_completa": 6,
+    "universitaria_incompleta": 7,
+    "universitaria_completa": 8,
+    # aliases de otros segmentos
+    "primaria": 2,              # salud
+    "primaria_o_menos": 1,      # financiero
+    "tecnica": 6,               # financiero, salud
+    "universitaria": 8,         # salud
+    "posgrado": 9,              # consumidores, financiero, salud
 }
 _REGION_ORD = {
     "selva": 0, "sierra_norte": 1, "sierra_sur": 2, "sierra_centro": 3,
-    "costa_sur": 4, "costa_norte": 5, "lima_metropolitana": 6,
+    "costa_sur": 4, "costa_norte": 5, "lima_metropolitana": 6, "callao": 7,
 }
 _RUBRO_ORD = {
     "agricultura_familiar": 0, "manufactura_artesanal": 1, "construccion": 2,
     "restaurantes_y_food": 3, "transporte": 4, "servicios_personales": 5,
     "comercio_minorista": 6, "otro": 7,
 }
+# Nuevos segmentos
+_NSE_ORD = {"E": 0, "D": 1, "C": 2, "B": 3, "A": 4}
+_BANCARIZACION_ORD = {"basico": 0, "intermedio": 1, "avanzado": 2}
+_TIPO_SEGURO_ORD = {
+    "sin_seguro": 0,
+    "sis_gratuito": 1,
+    "sis_independiente_pagante": 2,
+    "essalud": 3,
+    "ffaa_policia": 4,
+    "seguro_privado_eps": 5,
+}
+_DISPOSITIVO_ORD = {
+    "smart_tv": 0, "tablet": 1, "desktop": 2, "laptop": 3, "smartphone": 4,
+}
 
 _ORDINAL_MAPS: dict[str, dict[str, int]] = {
+    # MYPE
     "adopcion_digital": _ADOPCION_ORD,
     "tamaño": _TAMAÑO_ORD,
     "nivel_educativo": _EDUCACION_ORD,
     "region": _REGION_ORD,
     "rubro": _RUBRO_ORD,
+    # Consumidores
+    "nivel_socioeconomico": _NSE_ORD,
+    "dispositivo_principal": _DISPOSITIVO_ORD,
+    # Financiero
+    "nivel_bancarizacion": _BANCARIZACION_ORD,
+    # Salud
+    "tipo_seguro": _TIPO_SEGURO_ORD,
 }
 
 
