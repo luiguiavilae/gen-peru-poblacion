@@ -63,10 +63,10 @@ dev = [
 gen-peru-poblacion = "gen_peru_poblacion.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/[tu-usuario]/gen-peru-poblacion"
-Repository = "https://github.com/[tu-usuario]/gen-peru-poblacion"
-Issues = "https://github.com/[tu-usuario]/gen-peru-poblacion/issues"
-Documentation = "https://github.com/[tu-usuario]/gen-peru-poblacion#readme"
+Homepage = "https://github.com/luiguiavilae/gen-peru-poblacion"
+Repository = "https://github.com/luiguiavilae/gen-peru-poblacion"
+Issues = "https://github.com/luiguiavilae/gen-peru-poblacion/issues"
+Documentation = "https://github.com/luiguiavilae/gen-peru-poblacion#readme"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/gen_peru_poblacion"]
